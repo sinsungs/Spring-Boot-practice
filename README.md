@@ -1,2 +1,2 @@
 # Spring-Boot-practice
-스프링 부트 복습
+M대N 관계 연습
