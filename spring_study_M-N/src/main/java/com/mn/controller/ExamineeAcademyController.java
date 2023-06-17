@@ -7,11 +7,13 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mn.dto.ExamineeAcademyDTO;
+import com.mn.dto.ExamineeDTO;
 import com.mn.dto.RegisterRequestDTO;
 import com.mn.entity.Academy;
 import com.mn.entity.Examinee;
@@ -59,6 +61,13 @@ public class ExamineeAcademyController {
 
         String response = dto.toString();
         return ResponseEntity.ok(response);
+    }
+    
+    @GetMapping("/examinee/{examineeId}")
+    public ResponseEntity<String> showExaminee(@PathVariable Long examineeId) {
+        Examinee examinee = examineeRepository.findById(examineeId).get();
+        	String response = ExamineeDTO.of(examinee).toString();
+        	return ResponseEntity.ok(response);
     }
 
     
